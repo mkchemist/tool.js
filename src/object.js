@@ -51,8 +51,49 @@ const flattening = function (container = {}, _prefix = "", result = {}) {
   return result;
 };
 
+/**
+ * compare between two objects
+ *
+ * @param {object} master
+ * @param {object} check
+ * @return {object}
+ */
+const compare = function (master, check) {
+  let matches = [], diff = [];
+  Object.keys(master).forEach((key) => {
+    if(check.hasOwnProperty(key)) {
+      if(check[key] === master[key]) {
+        matches.push(key);
+      } else {
+        diff.push(key)
+      }
+    }
+  })
+  return {
+    matches,
+    diff
+  }
+}
+
+/**
+ * check if the given objects are identical
+ *
+ * @param {object} master
+ * @param {object} check
+ * @return {bool}
+ */
+const isIdentical = function (master, check) {
+  let result = compare(master, check);
+  if(result.diff.length === 0) {
+    return true;
+  }
+  return false;
+}
+
 
 module.exports = {
   notation,
-  flattening
+  flattening,
+  compare,
+  isIdentical
 }
