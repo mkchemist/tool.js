@@ -1,7 +1,7 @@
 /**
  * object notation
  *
- * get item from object it it has a multi nested levels
+ * get item from object if it has a multi nested levels
  *
  * @param {object} container
  * @param {string} key
